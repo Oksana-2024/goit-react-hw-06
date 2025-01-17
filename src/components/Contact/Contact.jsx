@@ -1,8 +1,11 @@
 import { IoPerson } from "react-icons/io5";
 import { MdPhone } from "react-icons/md";
 import s from "./Contact.module.css";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
 
-const Contact = ({ name, number, onDelete }) => {
+const Contact = ({ name, number, id }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <div className={s.contactContainer}>
@@ -13,7 +16,7 @@ const Contact = ({ name, number, onDelete }) => {
           <MdPhone size={24} /> <p>{number}</p>
         </div>
       </div>
-      <button onClick={onDelete} className={s.buttonDel} type="button">
+      <button onClick={() => dispatch(deleteContact(id))} className={s.buttonDel} type="button">
         Delete
       </button>
     </>
